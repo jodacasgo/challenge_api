@@ -1,12 +1,7 @@
 from pydantic import BaseModel
 from fastapi import FastAPI
-import os
 from datetime import datetime
 app = FastAPI()
-
-@app.get("/meli")
-def challenge():
-  return {"Hello world!"}
 
 class Item(BaseModel):
     id: int
@@ -18,10 +13,10 @@ class Item(BaseModel):
     systemOper: str
     
 @app.post("/meli")
-def challenge2(Item: Item):
+def challenge(Item: Item):
 #   return {"id":Item}
 
-    file = open("./info/"+Item.ipServidor + " "+ datetime.today().strftime('%Y-%m-%d') +".txt", "a")
+    file = open("./info/"+Item.ipServidor + " " + datetime.today().strftime('%Y-%m-%d') +".txt", "a")
     file.write("id: "+str(Item.id)+"\n")
     file.write("IP del servidor: "+Item.ipServidor+"\n")
     file.write("Nombre del servidor: "+Item.nameServer +"\n")
